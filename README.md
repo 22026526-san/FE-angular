@@ -228,45 +228,6 @@ Tạo file `.husky/commit-msg`:
 npx --no -- commitlint --edit $1
 ```
 
-## 🔧 Cấu hình Git Line Endings
-
-### Tạo file `.gitattributes`
-
-```
-# Auto detect text files and perform LF normalization
-* text=auto
-
-# Force LF for specific files
-*.sh text eol=lf
-.husky/* text eol=lf
-
-# Windows script files
-*.bat text eol=crlf
-*.cmd text eol=crlf
-
-# Source code
-*.ts text eol=lf
-*.js text eol=lf
-*.json text eol=lf
-*.html text eol=lf
-*.css text eol=lf
-*.scss text eol=lf
-*.md text eol=lf
-```
-
-### Cấu hình Git
-
-```bash
-git config core.autocrlf true
-```
-
-### Chuẩn hóa line endings
-
-```bash
-git add --renormalize .
-npx prettier --write .
-```
-
 ## 📝 Sử dụng
 
 ### Kiểm tra code thủ công
@@ -330,5 +291,3 @@ git commit -m "docs: update README"
 - [Husky](https://typicode.github.io/husky/)
 - [lint-staged](https://github.com/okonet/lint-staged)
 - [Commitlint](https://commitlint.js.org/)
-
-## 📄 License
