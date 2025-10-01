@@ -291,3 +291,142 @@ git commit -m "docs: update README"
 - [Husky](https://typicode.github.io/husky/)
 - [lint-staged](https://github.com/okonet/lint-staged)
 - [Commitlint](https://commitlint.js.org/)
+
+# 📂 Cấu trúc thư mục Angular (Enterprise Structure)
+
+Dự án này áp dụng **cấu trúc thư mục theo hướng enterprise** để đảm bảo:
+
+- 📌 Dễ mở rộng khi dự án lớn dần.
+- 📌 Dễ quản lý & bảo trì nhờ phân tách rõ ràng giữa **core**, **shared**, **features**.
+- 📌 Tái sử dụng code (**components, directives, pipes**).
+- 📌 Tối ưu performance nhờ **lazy loading** và **tách module**.
+
+---
+
+## 📁 Cấu trúc chi tiết:
+
+```json
+src/
+├── app/
+│   ├── core/
+│   ├── shared/
+│   ├── features/
+│   ├── layouts/
+│   ├── material/
+│   ├── app.component.ts
+│   ├── app.component.html
+│   ├── app.component.scss
+│   ├── app.config.ts
+│   ├── app.routes.ts
+│   └── app.spec.ts
+│
+├── assets/
+├── environments/
+└── styles/
+```
+
+## Mô tả chi tiết:
+
+### 🔹 core/
+
+Chứa **services, guard, interceptor, models** chỉ dùng một lần cho toàn app.
+
+Ví dụ:
+
+- `auth.guard.ts` → chặn route nếu chưa đăng nhập.
+- `auth.interceptor.ts` → tự động gắn token vào request.
+- `user.model.ts` → định nghĩa kiểu dữ liệu User.
+
+⚠️ **Lưu ý:** Không được import `CoreModule` nhiều lần (tránh tạo service mới).
+
+---
+
+### 🔹 shared/
+
+Chứa thành phần dùng chung cho nhiều feature.
+
+Ví dụ:
+
+- `components/` → header, footer, dialog, loader.
+- `directives/` → directive highlight, autoFocus.
+- `pipes/` → custom date pipe, currency pipe.
+- `utils/` → hàm validator, helper.
+
+---
+
+### 🔹 features/
+
+Mỗi folder = một **chức năng chính** của app.
+
+Ví dụ:
+
+- `auth/` → login, register.
+- `dashboard/` → trang dashboard, biểu đồ.
+- `products/` → danh sách sản phẩm, chi tiết sản phẩm.
+
+Bên trong chia nhỏ:
+
+- `pages/` → các màn hình (list, detail, edit).
+- `components/` → component chỉ phục vụ feature đó.
+- `services/` → service gọi API riêng cho feature.
+- `xxx.routes.ts` → định nghĩa route cho feature.
+
+👉 Tất cả **features** đều hỗ trợ **lazy loading** → chỉ load khi cần.
+
+---
+
+### 🔹 layouts/
+
+Quản lý **bố cục khung (layout)** cho từng loại trang.
+
+Ví dụ:
+
+- `main-layout/` → layout chính có header, sidebar, footer.
+- `auth-layout/` → layout chỉ chứa form login/register.
+- `admin-layout/` → layout quản trị riêng.
+
+---
+
+### 🔹 material/
+
+Chứa file gom các module của **Angular Material**.
+
+Ví dụ:
+
+- `material.module.ts` → import/export toàn bộ `MatButtonModule`, `MatDialogModule`,…
+
+---
+
+### 🔹 assets/
+
+Chứa file tĩnh (**ảnh, icon, font, json**).
+
+---
+
+### 🔹 environments/
+
+Quản lý cấu hình môi trường:
+
+- `environment.ts` → dùng khi chạy `ng serve` (dev).
+- `environment.prod.ts` → dùng khi build production.
+
+---
+
+### 🔹 styles/
+
+Chứa **SCSS/CSS toàn cục**.
+
+Ví dụ:
+
+- `variables.scss` → biến màu sắc, font-size.
+- `mixins.scss` → mixin tái sử dụng.
+- `styles.scss` → stylesheet chính của app.
+
+---
+
+## ✅ Lợi ích của cấu trúc này
+
+- Phân tách rõ ràng giữa **logic core, thành phần chung, và tính năng riêng**.
+- **Tái sử dụng dễ dàng** → chỉ cần import `SharedModule`.
+- Hỗ trợ **lazy loading** → tăng tốc độ tải trang.
+- **Quy chuẩn rõ ràng** → giúp nhiều dev cùng làm dễ hiểu code.
