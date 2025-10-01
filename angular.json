@@ -21,7 +21,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/custom-theme.scss", "src/styles.css"],
+            "styles": ["src/styles.css", "src/custom-theme.scss"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
