@@ -1,14 +1,918 @@
-html,
-body {
-  height: 100%;
+// ============================================
+// main.scss - File import chính
+// ============================================
+// Import theo thứ tự: abstracts -> base -> layout -> components -> pages
+
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
+
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/base';
+
+@import 'layout/grid';
+@import 'layout/header';
+@import 'layout/footer';
+
+// ============================================
+// components/_forms.scss
+// ============================================
+// Form Groups
+.form-group {
+  margin-bottom: $spacing-lg;
 }
-html,
+
+.form-label {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $gray-700;
+  margin-bottom: $spacing-sm;
+
+  .required {
+    color: $danger-color;
+    margin-left: 2px;
+  }
+}
+
+// Input Base
+.form-control {
+  width: 100%;
+  height: $input-height-md;
+  padding: 0 $spacing-md;
+  font-size: $font-size-base;
+  font-family: $font-primary;
+  color: $gray-900;
+  background: $white;
+  border: 1px solid $gray-300;
+  border-radius: $border-radius-md;
+  transition: all $transition-fast;
+
+  &::placeholder {
+    color: $gray-400;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+
+  &:disabled {
+    background: $gray-100;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &.is-invalid {
+    border-color: $danger-color;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($danger-color, 0.1);
+    }
+  }
+
+  &.is-valid {
+    border-color: $success-color;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($success-color, 0.1);
+    }
+  }
+}
+
+// Input Sizes
+.form-control-sm {
+  height: $input-height-sm;
+  padding: 0 $spacing-sm;
+  font-size: $font-size-sm;
+}
+
+.form-control-lg {
+  height: $input-height-lg;
+  padding: 0 $spacing-lg;
+  font-size: $font-size-lg;
+}
+
+// Textarea
+textarea.form-control {
+  height: auto;
+  min-height: 100px;
+  padding: $spacing-sm $spacing-md;
+  resize: vertical;
+}
+
+// Select
+select.form-control {
+  cursor: pointer;
+  padding-right: $spacing-xl;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $spacing-md center;
+  background-size: 12px;
+  appearance: none;
+}
+
+// Input with Icon
+.input-group {
+  position: relative;
+
+  .input-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $icon-sm;
+    height: $icon-sm;
+    color: $gray-500;
+    pointer-events: none;
+
+    &.left {
+      left: $spacing-md;
+    }
+
+    &.right {
+      right: $spacing-md;
+    }
+  }
+
+  .form-control {
+    &.has-icon-left {
+      padding-left: calc(#{$spacing-md} + #{$icon-sm} + #{$spacing-sm});
+    }
+
+    &.has-icon-right {
+      padding-right: calc(#{$spacing-md} + #{$icon-sm} + #{$spacing-sm});
+    }
+  }
+}
+
+// Checkbox & Radio
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: $primary-color;
+  }
+
+  label {
+    cursor: pointer;
+    user-select: none;
+    font-size: $font-size-base;
+    color: $gray-700;
+  }
+}
+
+// Error & Help Text
+.form-feedback {
+  font-size: $font-size-sm;
+  margin-top: $spacing-xs;
+
+  &.invalid-feedback {
+    color: $danger-color;
+  }
+
+  &.valid-feedback {
+    color: $success-color;
+  }
+}
+
+.form-text {
+  font-size: $font-size-sm;
+  color: $gray-600;
+  margin-top: $spacing-xs;
+}
+
+// Search Input
+.search-input {
+  position: relative;
+
+  .form-control {
+    padding-left: calc(#{$spacing-md} + #{$icon-md} + #{$spacing-sm});
+    border-radius: $border-radius-full;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $icon-md;
+    height: $icon-md;
+    color: $gray-500;
+  }
+}
+
+@import 'pages/home';
+@import 'pages/product-list';
+@import 'pages/product-detail';
+
+// ============================================
+// abstracts/_variables.scss
+// ============================================
+// Colors - Màu sắc cho shop giày
+$primary-color: #2c3e50;
+$secondary-color: #e74c3c;
+$accent-color: #3498db;
+$success-color: #27ae60;
+$warning-color: #f39c12;
+$danger-color: #e74c3c;
+
+// Neutral colors
+$white: #ffffff;
+$black: #000000;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+
+// Typography
+$font-primary:
+  'Inter',
+  'Roboto',
+  -apple-system,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  sans-serif;
+$font-secondary: 'Poppins', sans-serif;
+
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.25rem; // 20px
+$font-size-2xl: 1.5rem; // 24px
+$font-size-3xl: 1.875rem; // 30px
+$font-size-4xl: 2.25rem; // 36px
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Spacing
+$spacing-xs: 0.25rem; // 4px
+$spacing-sm: 0.5rem; // 8px
+$spacing-md: 1rem; // 16px
+$spacing-lg: 1.5rem; // 24px
+$spacing-xl: 2rem; // 32px
+$spacing-2xl: 3rem; // 48px
+$spacing-3xl: 4rem; // 64px
+
+// Border
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+$border-radius-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md:
+  0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg:
+  0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl:
+  0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// Breakpoints
+$breakpoint-xs: 480px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// Container
+$container-max-width: 1280px;
+
+// Component Sizes - Kích thước chuẩn cho các elements
+$size-xs: 28px;
+$size-sm: 32px;
+$size-md: 40px;
+$size-lg: 48px;
+$size-xl: 56px;
+
+// Icon Sizes
+$icon-xs: 16px;
+$icon-sm: 20px;
+$icon-md: 24px;
+$icon-lg: 32px;
+$icon-xl: 40px;
+
+// Input Heights
+$input-height-sm: $size-sm;
+$input-height-md: $size-md;
+$input-height-lg: $size-lg;
+
+// Button Heights
+$button-height-sm: $size-sm;
+$button-height-md: $size-md;
+$button-height-lg: $size-lg;
+
+// Transitions
+$transition-fast: 150ms ease-in-out;
+$transition-base: 300ms ease-in-out;
+$transition-slow: 500ms ease-in-out;
+
+// Z-index
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+
+// ============================================
+// abstracts/_mixins.scss
+// ============================================
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (min-width: $breakpoint-xs) {
+      @content;
+    }
+  } @else if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $breakpoint == 2xl {
+    @media (min-width: $breakpoint-2xl) {
+      @content;
+    }
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Button mixin
+@mixin button-variant($bg-color, $text-color: $white) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+
+  &:hover {
+    background-color: darken($bg-color, 8%);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Card mixin
+@mixin card($padding: $spacing-lg) {
+  background: $white;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-md;
+  padding: $padding;
+  transition: all $transition-base;
+}
+
+// Truncate text
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Aspect ratio
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: calc(($height / $width) * 100%);
+  }
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// ============================================
+// base/_reset.scss
+// ============================================
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  color-scheme: light;
-  margin: 16px auto;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  min-width: 850px;
-  max-width: 1150px;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+// ============================================
+// base/_typography.scss
+// ============================================
+body {
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: 1.6;
+  color: $gray-900;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-secondary;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  margin-bottom: $spacing-md;
+  color: $gray-900;
+}
+
+h1 {
+  font-size: $font-size-4xl;
+}
+h2 {
+  font-size: $font-size-3xl;
+}
+h3 {
+  font-size: $font-size-2xl;
+}
+h4 {
+  font-size: $font-size-xl;
+}
+h5 {
+  font-size: $font-size-lg;
+}
+h6 {
+  font-size: $font-size-base;
+}
+
+p {
+  margin-bottom: $spacing-md;
+}
+
+.text-primary {
+  color: $primary-color;
+}
+.text-secondary {
+  color: $secondary-color;
+}
+.text-muted {
+  color: $gray-600;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.fw-light {
+  font-weight: $font-weight-light;
+}
+.fw-normal {
+  font-weight: $font-weight-normal;
+}
+.fw-medium {
+  font-weight: $font-weight-medium;
+}
+.fw-semibold {
+  font-weight: $font-weight-semibold;
+}
+.fw-bold {
+  font-weight: $font-weight-bold;
+}
+
+// ============================================
+// components/_buttons.scss
+// ============================================
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: $button-height-md;
+  padding: 0 $spacing-lg;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: all $transition-base;
+  border: none;
+  text-align: center;
+  gap: $spacing-sm;
+  line-height: 1;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  // Icon trong button
+  .icon {
+    width: $icon-sm;
+    height: $icon-sm;
+    flex-shrink: 0;
+  }
+}
+
+.btn-primary {
+  @include button-variant($primary-color);
+}
+
+.btn-secondary {
+  @include button-variant($secondary-color);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid $primary-color;
+  color: $primary-color;
+
+  &:hover {
+    background: $primary-color;
+    color: $white;
+  }
+}
+
+.btn-sm {
+  height: $button-height-sm;
+  padding: 0 $spacing-md;
+  font-size: $font-size-sm;
+
+  .icon {
+    width: $icon-xs;
+    height: $icon-xs;
+  }
+}
+
+.btn-lg {
+  height: $button-height-lg;
+  padding: 0 $spacing-xl;
+  font-size: $font-size-lg;
+
+  .icon {
+    width: $icon-md;
+    height: $icon-md;
+  }
+}
+
+// Icon button (chỉ có icon, không có text)
+.btn-icon {
+  width: $button-height-md;
+  height: $button-height-md;
+  padding: 0;
+
+  &.btn-sm {
+    width: $button-height-sm;
+    height: $button-height-sm;
+  }
+
+  &.btn-lg {
+    width: $button-height-lg;
+    height: $button-height-lg;
+  }
+}
+
+// ============================================
+// components/_cards.scss
+// ============================================
+.product-card {
+  @include card;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $shadow-xl;
+    transform: translateY(-4px);
+
+    .product-card__image img {
+      transform: scale(1.08);
+    }
+  }
+}
+
+.product-card__image {
+  @include aspect-ratio(1, 1);
+  overflow: hidden;
+  border-radius: $border-radius-md;
+  margin-bottom: $spacing-md;
+  background: $gray-100;
+
+  img {
+    object-fit: cover;
+    transition: transform $transition-slow;
+  }
+}
+
+.product-card__brand {
+  font-size: $font-size-sm;
+  color: $gray-600;
+  text-transform: uppercase;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.5px;
+  margin-bottom: $spacing-xs;
+}
+
+.product-card__name {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-sm;
+  @include truncate(2);
+}
+
+.product-card__price {
+  @include flex-between;
+  align-items: baseline;
+
+  .price-current {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $secondary-color;
+  }
+
+  .price-original {
+    font-size: $font-size-base;
+    color: $gray-500;
+    text-decoration: line-through;
+  }
+}
+
+.product-card__rating {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-top: $spacing-sm;
+  font-size: $font-size-sm;
+  color: $gray-600;
+}
+
+// ============================================
+// layout/_grid.scss
+// ============================================
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @include respond-to(lg) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: $spacing-lg;
+
+  &.cols-2 {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &.cols-3 {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &.cols-4 {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+    @include respond-to(lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+.section {
+  padding: $spacing-3xl 0;
+}
+
+// ============================================
+// Utility Classes
+// ============================================
+// Icon Sizes
+.icon-xs {
+  width: $icon-xs;
+  height: $icon-xs;
+}
+.icon-sm {
+  width: $icon-sm;
+  height: $icon-sm;
+}
+.icon-md {
+  width: $icon-md;
+  height: $icon-md;
+}
+.icon-lg {
+  width: $icon-lg;
+  height: $icon-lg;
+}
+.icon-xl {
+  width: $icon-xl;
+  height: $icon-xl;
+}
+
+// Title Sizes (chuẩn hóa kích thước tiêu đề)
+.title {
+  font-family: $font-secondary;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  color: $gray-900;
+  margin-bottom: $spacing-md;
+}
+
+.title-xs {
+  @extend .title;
+  font-size: $font-size-base;
+  line-height: 1.4;
+}
+
+.title-sm {
+  @extend .title;
+  font-size: $font-size-lg;
+}
+
+.title-md {
+  @extend .title;
+  font-size: $font-size-2xl;
+}
+
+.title-lg {
+  @extend .title;
+  font-size: $font-size-3xl;
+}
+
+.title-xl {
+  @extend .title;
+  font-size: $font-size-4xl;
+}
+
+// Spacing utilities
+.mt-1 {
+  margin-top: $spacing-xs;
+}
+.mt-2 {
+  margin-top: $spacing-sm;
+}
+.mt-3 {
+  margin-top: $spacing-md;
+}
+.mt-4 {
+  margin-top: $spacing-lg;
+}
+.mt-5 {
+  margin-top: $spacing-xl;
+}
+
+.mb-1 {
+  margin-bottom: $spacing-xs;
+}
+.mb-2 {
+  margin-bottom: $spacing-sm;
+}
+.mb-3 {
+  margin-bottom: $spacing-md;
+}
+.mb-4 {
+  margin-bottom: $spacing-lg;
+}
+.mb-5 {
+  margin-bottom: $spacing-xl;
+}
+
+.p-1 {
+  padding: $spacing-xs;
+}
+.p-2 {
+  padding: $spacing-sm;
+}
+.p-3 {
+  padding: $spacing-md;
+}
+.p-4 {
+  padding: $spacing-lg;
+}
+.p-5 {
+  padding: $spacing-xl;
+}
+
+// Display utilities
+.d-flex {
+  display: flex;
+}
+.d-block {
+  display: block;
+}
+.d-inline {
+  display: inline;
+}
+.d-none {
+  display: none;
+}
+
+.flex-center {
+  @include flex-center;
+}
+.flex-between {
+  @include flex-between;
+}
+.flex-column {
+  flex-direction: column;
+}
+.gap-1 {
+  gap: $spacing-xs;
+}
+.gap-2 {
+  gap: $spacing-sm;
+}
+.gap-3 {
+  gap: $spacing-md;
 }

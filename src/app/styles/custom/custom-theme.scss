@@ -53,3 +53,18 @@ html {
     )
   );
 }
+
+html,
+body {
+  height: 100%;
+}
+html,
+body {
+  color-scheme: light;
+  margin: 16px auto;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  min-width: 850px;
+  max-width: 1150px;
+}

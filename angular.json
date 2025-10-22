@@ -21,10 +21,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/app/styles/entry_style/styles.scss",
-              "src/app/styles/custom/custom-theme.scss"
-            ],
+            "styles": ["src/app/styles/custom/custom-theme.scss"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -80,7 +77,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/app/styles/entry_style/styles.scss"]
+            "styles": ["src/app/styles/custom/custom-theme.scss"]
           }
         }
       }
