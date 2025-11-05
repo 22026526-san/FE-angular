@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test || true",
+    "test": "ng test",
     "serve:ssr:angular-intern": "node dist/angular-intern/server/server.mjs",
     "prepare": "husky",
     "lint": "eslint .",
@@ -47,9 +47,7 @@
     "@tailwindcss/postcss": "^4.1.13",
     "express": "^5.1.0",
     "hammerjs": "^2.0.8",
-    "postcss": "^8.5.6",
     "rxjs": "~7.8.0",
-    "tailwindcss": "^4.1.13",
     "tslib": "^2.3.0",
     "typescript-eslint": "^8.46.3"
   },
@@ -63,6 +61,7 @@
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
     "angular-eslint": "^20.3.0",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.29.1",
@@ -76,8 +75,10 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "lint-staged": "^16.2.3",
+    "postcss": "^8.4.47",
     "prettier": "^3.6.2",
     "prettier-eslint": "^16.4.2",
+    "tailwindcss": "^3.4.14",
     "typescript": "~5.9.2"
   }
 }
