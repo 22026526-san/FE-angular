@@ -8,7 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:angular-intern": "node dist/angular-intern/server/server.mjs",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "lint-staged": {
     "*.{ts,html}": [
@@ -49,7 +51,8 @@
     "postcss": "^8.5.6",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.1.13",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "typescript-eslint": "^8.46.3"
   },
   "devDependencies": {
     "@angular/build": "^20.3.3",
@@ -60,10 +63,11 @@
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
-    "@typescript-eslint/eslint-plugin": "^8.45.0",
     "angular-eslint": "^20.3.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.0.0 || ^17.0.0",
     "eslint-plugin-prettier": "^5.5.4",
     "husky": "^9.1.7",
     "jasmine-core": "~5.9.0",
@@ -75,7 +79,6 @@
     "lint-staged": "^16.2.3",
     "prettier": "^3.6.2",
     "prettier-eslint": "^16.4.2",
-    "typescript": "~5.9.2",
-    "typescript-eslint": "^8.45.0"
+    "typescript": "~5.9.2"
   }
 }
