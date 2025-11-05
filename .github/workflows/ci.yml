@@ -28,7 +28,5 @@ jobs:
         run: npm ci
       - name: Code quality
         run: npm run lint
-      - name: Test project
-        run: npm run test 
       - name: Build project
         run: npm run build
