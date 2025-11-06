@@ -32,6 +32,11 @@
       }
     ]
   },
+  "overrides": {
+    "esbuild-css-modules-plugin": {
+      "lightningcss": "1.21.3"
+    }
+  },
   "private": true,
   "dependencies": {
     "@angular/cdk": "^20.2.5",
