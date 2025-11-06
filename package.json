@@ -78,10 +78,12 @@
     "postcss": "^8.4.47",
     "prettier": "^3.6.2",
     "prettier-eslint": "^16.4.2",
-    "tailwindcss": "^3.4.14",
+    "tailwindcss": "^4.1.6",
     "typescript": "~5.9.2"
   },
   "optionalDependencies": {
-    "lightningcss-linux-x64-gnu": "^1.29.1"
+    "lightningcss-linux-x64-gnu": "^1.29.1",
+    "lightningcss-linux-x64-musl": "^1.29.1",
+    "lightningcss-linux-arm64-musl": "^1.29.1"
   }
 }

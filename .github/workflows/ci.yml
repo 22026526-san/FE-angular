@@ -19,6 +19,7 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci
+             npm rebuild lightningcss || true
       - name: Code checkout
         run: npm run lint
       - name: Build Angular App
