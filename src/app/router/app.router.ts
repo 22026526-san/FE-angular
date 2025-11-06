@@ -25,7 +25,7 @@ export const routes: Routes = [
       },
       {
         path: 'home',
-        loadChildren: () => import('../features/HomePage/home.component').then((m) => m.HomePage),
+        loadComponent: () => import('../features/HomePage/home.component').then((m) => m.HomePage),
       },
     ],
   },
