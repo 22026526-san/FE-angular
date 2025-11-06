@@ -19,20 +19,8 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci
-
-      # QUAN TRỌNG: Fix lỗi lightningcss
-      - name: Rebuild native modules
-        run: npm rebuild
-
-      # BUILD VỚI PRODUCTION
+      - name: Code checkout
+        run: npm run lint
       - name: Build Angular App
         run: npm run build 
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      # UPLOAD ĐÚNG THƯ MỤC DIST
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist/angular-intern'
