@@ -1,4 +1,4 @@
-name: Build, Test, and Deploy
+name: CI Pipeline
 on:
   push:
     branches:
@@ -48,7 +48,7 @@ jobs:
 
       - name: Run container in background
         run: |
-          docker run -d test-build -p 4200:3000 ${{ secrets.DOCKERHUB_USERNAME }}/ci-pipeline-demo:latest
+          docker run -d --name test-build -p 4200:3000 ${{ secrets.DOCKERHUB_USERNAME }}/ci-pipeline-demo:latest
 
       - name: Wait for server to start
         run: sleep 10
