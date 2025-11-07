@@ -44,19 +44,19 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true  
-          tags: san525/ci-pipeline-demo:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ci-pipeline-demo:latest
 
       - name: Run container in background
         run: |
-          docker run -d --name test-build -p 4200:4200 san525/ci-pipeline-demo:latest
+          docker run -d test-build -p 4200:3000 ${{ secrets.DOCKERHUB_USERNAME }}/ci-pipeline-demo:latest
 
       - name: Wait for server to start
         run: sleep 10
 
       - name: Test health endpoint
-        run: curl -f http://localhost:4200/health || exit 1
+        run: curl -f http://localhost:3000 || exit 1
 
       - name: Stop container
-        run: docker stop test-app
+        run: docker stop test-build
              
 
