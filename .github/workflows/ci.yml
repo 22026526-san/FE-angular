@@ -46,8 +46,17 @@ jobs:
           push: true  
           tags: san525/ci-pipeline-demo:latest
 
-      - name: Run tests inside container
+      - name: Run container in background
         run: |
-          docker run --rm san525/ci-pipeline-demo:latest 
-          ls dist/
+          docker run -d --name test-build -p 4200:80 san525/ci-pipeline-demo:latest
+
+      - name: Wait for server to start
+        run: sleep 10
+
+      - name: Test health endpoint
+        run: curl -f http://localhost:4200/health || exit 1
+
+      - name: Stop container
+        run: docker stop test-app
+             
 
