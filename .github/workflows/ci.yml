@@ -48,5 +48,6 @@ jobs:
 
       - name: Run tests inside container
         run: |
-          docker run --rm san525/ci-pipeline-demo:latest
+          docker run --rm san525/ci-pipeline-demo:latest 
+          ls dist/
 
