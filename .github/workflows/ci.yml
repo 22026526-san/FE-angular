@@ -1,11 +1,12 @@
 name: CI Pipeline
 on:
   push:
-    branches:
-      - master
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
-  build-and-test:
+  ci pipeline:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
