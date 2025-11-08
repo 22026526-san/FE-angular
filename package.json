@@ -46,6 +46,7 @@
     "@angular/router": "^20.3.0",
     "@angular/ssr": "^20.3.3",
     "@tailwindcss/postcss": "^4.1.13",
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
     "express": "^5.1.0",
     "hammerjs": "^2.0.8",
     "rxjs": "~7.8.0",
@@ -83,9 +84,9 @@
     "typescript": "~5.9.2"
   },
   "optionalDependencies": {
-    "lightningcss-linux-x64-gnu": "^1.29.1",
-    "lightningcss-linux-x64-musl": "^1.29.1",
+    "@rollup/rollup-linux-arm64-gnu": "^4.0.0",
     "lightningcss-linux-arm64-musl": "^1.29.1",
-    "@rollup/rollup-linux-arm64-gnu": "^4.0.0"
+    "lightningcss-linux-x64-gnu": "^1.29.1",
+    "lightningcss-linux-x64-musl": "^1.29.1"
   }
 }
