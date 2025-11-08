@@ -14,6 +14,7 @@
   },
   "lint-staged": {
     "*.{ts,html}": [
+      "eslint --fix",
       "prettier --write"
     ],
     "*.{json,css,scss,md}": [
