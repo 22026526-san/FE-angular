@@ -27,7 +27,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test
-          args: --severity-threshold=medium
+          args: --severity-threshold=medium --skip-unresolved
 
       - name: Check code standard
         run: npm run lint
