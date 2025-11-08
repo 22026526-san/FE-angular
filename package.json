@@ -83,7 +83,8 @@
     "prettier-eslint": "^16.4.2",
     "rimraf": "^6.1.0",
     "tailwindcss": "^4.1.6",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "@emnapi/core": "^1.6.0"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-arm64-gnu": "^4.0.0",
